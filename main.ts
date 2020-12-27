@@ -1,3 +1,26 @@
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    projectile = sprites.createProjectileFromSprite(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . 6 . . . . . 
+        . . . . . . . . . 6 6 6 . . . . 
+        . . . . . . . . 6 6 9 6 6 . . . 
+        . . . . . . . 6 6 9 9 9 6 6 . . 
+        6 6 6 6 6 6 6 6 9 9 5 9 9 6 6 . 
+        9 9 9 9 9 9 9 9 9 5 5 5 9 9 6 6 
+        6 6 6 6 6 6 6 6 9 9 5 9 9 6 6 . 
+        . . . . . . . 6 6 9 9 9 6 6 . . 
+        . . . . . . . . 6 6 9 6 6 . . . 
+        . . . . . . . . . 6 6 6 . . . . 
+        . . . . . . . . . . 6 . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, mySprite, 200, 0)
+    projectile.startEffect(effects.fire)
+    statusbar.value += -40
+    music.pewPew.play()
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
@@ -6,19 +29,23 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . 9 . . . . . 
-        . . . . . . . . . 9 9 9 . . . . 
-        . . . . . . . . 9 9 5 9 9 . . . 
-        9 9 9 9 9 9 9 9 9 5 5 5 9 9 . . 
-        . . . . . . . . 9 9 5 9 9 . . . 
-        . . . . . . . . . 9 9 9 . . . . 
-        . . . . . . . . . . 9 . . . . . 
+        . . . . . . . . . . 2 . . . . . 
+        . . . . . . . . . 2 2 2 . . . . 
+        . . . . . . . 2 2 2 5 2 2 . . . 
+        2 2 2 2 2 2 2 2 2 5 5 5 2 2 . . 
+        . . . . . . . 2 2 2 5 2 2 . . . 
+        . . . . . . . . . 2 2 2 . . . . 
+        . . . . . . . . . . 2 . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, mySprite, 200, 0)
     projectile.startEffect(effects.fire)
+    statusbar.value += -2
     music.pewPew.play()
+})
+statusbars.onZero(StatusBarKind.Energy, function (status) {
+    game.over(false)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprite.destroy()
@@ -33,6 +60,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 })
 let EnemyShip: Sprite = null
 let projectile: Sprite = null
+let statusbar: StatusBarSprite = null
 let mySprite: Sprite = null
 effects.starField.startScreenEffect()
 mySprite = sprites.create(img`
@@ -56,6 +84,10 @@ mySprite = sprites.create(img`
 controller.moveSprite(mySprite)
 mySprite.setFlag(SpriteFlag.StayInScreen, true)
 info.setLife(5)
+statusbar = statusbars.create(20, 4, StatusBarKind.Energy)
+statusbar.value = 100
+statusbar.setColor(7, 2)
+statusbar.setLabel("Energy")
 game.onUpdateInterval(2000, function () {
     EnemyShip = sprites.create(img`
         . . . . . . . . . . . . . . . . 
