@@ -18,6 +18,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, mySprite, 200, 0)
     projectile.startEffect(effects.fire)
+    music.pewPew.play()
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprite.destroy()
@@ -25,9 +26,10 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
     info.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    music.jumpDown.play()
     info.changeLifeBy(-1)
     otherSprite.destroy(effects.fire, 500)
-    scene.cameraShake(4, 500)
+    scene.cameraShake(6, 500)
 })
 let EnemyShip: Sprite = null
 let projectile: Sprite = null
@@ -37,17 +39,17 @@ mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . 6 4 4 . . 
-    . . . . . . . . . 6 6 6 . . . . 
     . . . . . . . 6 6 6 6 6 . . . . 
-    . . . . . 6 8 8 8 8 8 a . . . . 
+    . . . . . . 6 6 6 6 6 6 4 . . . 
+    . . . . . 6 6 6 6 6 6 6 . . . . 
+    . . . . 6 8 8 8 8 8 8 a . . . . 
     . . . 6 6 6 6 6 6 6 a a a . . . 
     . . 6 6 6 6 6 6 6 6 a a a . . . 
-    . 6 6 6 8 8 8 8 8 8 8 a 4 4 . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
+    . . . 6 6 6 6 6 6 6 a a a . . . 
+    . . . . 6 8 8 8 8 8 8 a . . . . 
+    . . . . . 6 6 6 6 6 6 6 . . . . 
+    . . . . . . 6 6 6 6 6 6 4 . . . 
+    . . . . . . . 6 6 6 6 6 . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
@@ -58,18 +60,18 @@ game.onUpdateInterval(2000, function () {
     EnemyShip = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        . . . . . . . . . 3 2 . . . . . 
-        . . . . . . . 3 3 3 2 . . . . . 
-        . . . . . . 3 3 2 2 2 4 . . . . 
-        . . . . 3 3 3 2 2 2 2 4 . . . . 
-        . . . 3 3 2 2 2 2 2 2 . . . . . 
-        . . . 3 2 2 2 2 2 2 2 . . . . . 
-        . . 2 2 2 2 2 2 2 2 2 . . . . . 
-        . . . 2 2 2 2 2 2 2 2 . . . . . 
-        . . . 3 3 2 2 2 2 2 2 4 . . . . 
-        . . . . . 3 3 3 2 2 2 4 . . . . 
-        . . . . . . . 3 3 3 2 . . . . . 
-        . . . . . . . . . . 2 . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . 2 3 3 3 3 3 3 3 3 4 . . . . 
+        . 2 2 2 2 2 2 2 2 2 2 . . . . . 
+        . . 2 3 3 3 3 3 3 3 3 4 . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.Enemy)
