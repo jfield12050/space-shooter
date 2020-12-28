@@ -2,23 +2,23 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
         . . . . . . . . . . 6 . . . . . 
         . . . . . . . . . 6 6 6 . . . . 
         . . . . . . . . 6 6 9 6 6 . . . 
         . . . . . . . 6 6 9 9 9 6 6 . . 
         6 6 6 6 6 6 6 6 9 9 5 9 9 6 6 . 
-        9 9 9 9 9 9 9 9 9 5 5 5 9 9 6 6 
+        9 9 9 9 9 9 9 9 9 5 2 5 9 9 6 6 
+        9 9 9 9 9 9 9 9 9 5 2 5 9 9 6 6 
         6 6 6 6 6 6 6 6 9 9 5 9 9 6 6 . 
         . . . . . . . 6 6 9 9 9 6 6 . . 
         . . . . . . . . 6 6 9 6 6 . . . 
         . . . . . . . . . 6 6 6 . . . . 
         . . . . . . . . . . 6 . . . . . 
+        . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, mySprite, 200, 0)
     projectile.startEffect(effects.fire)
-    statusbar.value += -10
+    statusbar.value += -4
     music.pewPew.play()
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -28,14 +28,14 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . 2 . . . . . 
+        . . . 3 3 3 3 3 3 2 5 2 . . . . 
+        2 2 2 2 2 2 2 2 2 5 5 5 2 . . . 
+        2 2 2 2 2 2 2 2 2 5 5 5 2 . . . 
+        . . . 3 3 3 3 3 3 2 5 2 . . . . 
+        . . . . . . . . . . 2 . . . . . 
         . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . 2 . . . . . 
-        . . . . . . . . . 2 2 2 . . . . 
-        . . . . . . . 2 2 2 5 2 2 . . . 
-        2 2 2 2 2 2 2 2 2 5 5 5 2 2 . . 
-        . . . . . . . 2 2 2 5 2 2 . . . 
-        . . . . . . . . . 2 2 2 . . . . 
-        . . . . . . . . . . 2 . . . . . 
+        . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -86,6 +86,7 @@ mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
+mySprite.setPosition(randint(10, 80), 50)
 controller.moveSprite(mySprite)
 mySprite.setFlag(SpriteFlag.StayInScreen, true)
 info.setLife(5)
@@ -121,4 +122,5 @@ game.onUpdateInterval(2000, function () {
     EnemyShip.x = scene.screenWidth()
     EnemyShip.vx = -20
     EnemyShip.y = randint(10, scene.screenHeight() - 10)
+    EnemyShip.follow(mySprite, 4)
 })
