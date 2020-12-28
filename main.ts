@@ -16,7 +16,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . 6 . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `, mySprite, 200, 0)
+        `, mySprite, 100, 20)
     projectile.startEffect(effects.fire)
     statusbar.value += -4
     music.pewPew.play()
@@ -30,8 +30,8 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . 2 . . . . . 
         . . . 3 3 3 3 3 3 2 5 2 . . . . 
-        2 2 2 2 2 2 2 2 2 5 5 5 2 . . . 
-        2 2 2 2 2 2 2 2 2 5 5 5 2 . . . 
+        2 2 2 2 2 2 2 2 2 5 6 5 2 . . . 
+        2 2 2 2 2 2 2 2 2 5 6 5 2 . . . 
         . . . 3 3 3 3 3 3 2 5 2 . . . . 
         . . . . . . . . . . 2 . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -39,7 +39,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `, mySprite, 200, 0)
+        `, mySprite, 100, -20)
     projectile.startEffect(effects.fire)
     statusbar.value += -2
     music.pewPew.play()
@@ -100,7 +100,7 @@ statusbar2.value = 100
 statusbar2.setColor(7, 2)
 statusbar2.setLabel("Health")
 statusbar2.attachToSprite(mySprite, -65, -50)
-game.onUpdateInterval(2000, function () {
+game.onUpdateInterval(5000, function () {
     EnemyShip = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
