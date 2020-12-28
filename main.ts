@@ -18,7 +18,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, mySprite, 200, 0)
     projectile.startEffect(effects.fire)
-    statusbar.value += -40
+    statusbar.value += -10
     music.pewPew.play()
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -44,6 +44,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     statusbar.value += -2
     music.pewPew.play()
 })
+statusbars.onZero(StatusBarKind.Health, function (status) {
+    game.over(false)
+})
 statusbars.onZero(StatusBarKind.Energy, function (status) {
     game.over(false)
 })
@@ -55,11 +58,13 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     music.jumpDown.play()
     info.changeLifeBy(-1)
+    statusbar2.value += -10
     otherSprite.destroy(effects.fire, 500)
     scene.cameraShake(6, 500)
 })
 let EnemyShip: Sprite = null
 let projectile: Sprite = null
+let statusbar2: StatusBarSprite = null
 let statusbar: StatusBarSprite = null
 let mySprite: Sprite = null
 effects.starField.startScreenEffect()
@@ -88,6 +93,12 @@ statusbar = statusbars.create(20, 4, StatusBarKind.Energy)
 statusbar.value = 100
 statusbar.setColor(7, 2)
 statusbar.setLabel("Energy")
+statusbar.attachToSprite(mySprite, -65, 50)
+statusbar2 = statusbars.create(20, 4, StatusBarKind.Health)
+statusbar2.value = 100
+statusbar2.setColor(7, 2)
+statusbar2.setLabel("Health")
+statusbar2.attachToSprite(mySprite, -65, -50)
 game.onUpdateInterval(2000, function () {
     EnemyShip = sprites.create(img`
         . . . . . . . . . . . . . . . . 
