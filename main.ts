@@ -111,7 +111,7 @@ statusbar2.setLabel("H")
 statusbar2.attachToSprite(mySprite, -25, 10)
 let X_Pos1 = 0
 game.onUpdateInterval(1000, function () {
-    X_Pos1 = randint(50, scene.screenHeight()) % scene.screenHeight()
+    X_Pos1 = randint(20, scene.screenHeight() - 20)
     mySprite.setPosition(0, X_Pos1)
 })
 game.onUpdateInterval(500, function () {
@@ -135,6 +135,6 @@ game.onUpdateInterval(500, function () {
         `, SpriteKind.Food)
     EnemyShip.x = scene.screenWidth()
     EnemyShip.vx = -20
-    EnemyShip.y = randint(10, scene.screenHeight() - 10)
-    EnemyShip.follow(mySprite, 8)
+    EnemyShip.y = randint(0, scene.screenHeight() - 0)
+    EnemyShip.follow(mySprite, 5)
 })
