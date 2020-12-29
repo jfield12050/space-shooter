@@ -16,7 +16,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . 6 . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `, mySprite, 100, 20)
+        `, mySprite, 100, 0)
     projectile.startEffect(effects.fire)
     statusbar.value += -4
     music.pewPew.play()
@@ -39,7 +39,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `, mySprite, 100, -20)
+        `, mySprite, 100, 0)
     projectile.startEffect(effects.fire)
     statusbar.value += -2
     music.pewPew.play()
@@ -57,10 +57,10 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     music.jumpDown.play()
-    info.changeLifeBy(-1)
-    statusbar2.value += -10
     otherSprite.destroy(effects.fire, 500)
     scene.cameraShake(6, 500)
+    info.changeLifeBy(-1)
+    statusbar2.value += -10
 })
 let EnemyShip: Sprite = null
 let projectile: Sprite = null
@@ -100,6 +100,7 @@ statusbar2.value = 100
 statusbar2.setColor(7, 2)
 statusbar2.setLabel("Health")
 statusbar2.attachToSprite(mySprite, -65, -50)
+let X_Pos1 = 0
 game.onUpdateInterval(5000, function () {
     EnemyShip = sprites.create(img`
         . . . . . . . . . . . . . . . . 
@@ -123,4 +124,8 @@ game.onUpdateInterval(5000, function () {
     EnemyShip.vx = -20
     EnemyShip.y = randint(10, scene.screenHeight() - 10)
     EnemyShip.follow(mySprite, 4)
+})
+game.onUpdateInterval(1000, function () {
+    X_Pos1 = randint(0, scene.screenHeight()) % scene.screenHeight()
+    mySprite.setPosition(20, X_Pos1)
 })

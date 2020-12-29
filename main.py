@@ -3,52 +3,52 @@ def on_b_pressed():
     projectile = sprites.create_projectile_from_sprite(img("""
         . . . . . . . . . . . . . . . .
         . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
-        . . . . . . . . . . . . . . . .
         . . . . . . . . . . 6 . . . . .
         . . . . . . . . . 6 6 6 . . . .
         . . . . . . . . 6 6 9 6 6 . . .
         . . . . . . . 6 6 9 9 9 6 6 . .
         6 6 6 6 6 6 6 6 9 9 5 9 9 6 6 .
-        9 9 9 9 9 9 9 9 9 5 5 5 9 9 6 6
+        9 9 9 9 9 9 9 9 9 5 2 5 9 9 6 6
+        9 9 9 9 9 9 9 9 9 5 2 5 9 9 6 6
         6 6 6 6 6 6 6 6 9 9 5 9 9 6 6 .
         . . . . . . . 6 6 9 9 9 6 6 . .
         . . . . . . . . 6 6 9 6 6 . . .
         . . . . . . . . . 6 6 6 . . . .
         . . . . . . . . . . 6 . . . . .
+        . . . . . . . . . . . . . . . .
         . . . . . . . . . . . . . . . .
     """),
         mySprite,
-        200,
-        0)
+        100,
+        20)
     projectile.start_effect(effects.fire)
-    statusbar.value += -10
+    statusbar.value += -4
     music.pew_pew.play()
 controller.B.on_event(ControllerButtonEvent.PRESSED, on_b_pressed)
 
 def on_a_pressed():
     global projectile
     projectile = sprites.create_projectile_from_sprite(img("""
-            . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . 2 . . . . . 
-                    . . . . . . . . . 2 2 2 . . . . 
-                    . . . . . . . 2 2 2 5 2 2 . . . 
-                    2 2 2 2 2 2 2 2 2 5 5 5 2 2 . . 
-                    . . . . . . . 2 2 2 5 2 2 . . . 
-                    . . . . . . . . . 2 2 2 . . . . 
-                    . . . . . . . . . . 2 . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . . 
-                    . . . . . . . . . . . . . . . .
-        """),
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . 2 . . . . .
+        . . . 3 3 3 3 3 3 2 5 2 . . . .
+        2 2 2 2 2 2 2 2 2 5 6 5 2 . . .
+        2 2 2 2 2 2 2 2 2 5 6 5 2 . . .
+        . . . 3 3 3 3 3 3 2 5 2 . . . .
+        . . . . . . . . . . 2 . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+    """),
         mySprite,
-        200,
-        0)
+        100,
+        -20)
     projectile.start_effect(effects.fire)
     statusbar.value += -2
     music.pew_pew.play()
@@ -83,24 +83,25 @@ statusbar: StatusBarSprite = None
 mySprite: Sprite = None
 effects.star_field.start_screen_effect()
 mySprite = sprites.create(img("""
-        . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . 6 6 6 6 6 . . . . 
-            . . . . . . 6 6 6 6 6 6 4 . . . 
-            . . . . . 6 6 6 6 6 6 6 . . . . 
-            . . . . 6 8 8 8 8 8 8 a . . . . 
-            . . . 6 6 6 6 6 6 6 a a a . . . 
-            . . 6 6 6 6 6 6 6 6 a a a . . . 
-            . . . 6 6 6 6 6 6 6 a a a . . . 
-            . . . . 6 8 8 8 8 8 8 a . . . . 
-            . . . . . 6 6 6 6 6 6 6 . . . . 
-            . . . . . . 6 6 6 6 6 6 4 . . . 
-            . . . . . . . 6 6 6 6 6 . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . .
-    """),
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . 6 6 6 6 6 . . . .
+    . . . . . . 6 6 6 6 6 6 4 . . .
+    . . . . . 6 6 6 6 6 6 6 . . . .
+    . . . . 6 8 8 8 8 8 8 a . . . .
+    . . . 6 6 6 6 6 6 6 a a a . . .
+    . . 6 6 6 6 6 6 6 6 a a a . . .
+    . . . 6 6 6 6 6 6 6 a a a . . .
+    . . . . 6 8 8 8 8 8 8 a . . . .
+    . . . . . 6 6 6 6 6 6 6 . . . .
+    . . . . . . 6 6 6 6 6 6 4 . . .
+    . . . . . . . 6 6 6 6 6 . . . .
+    . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . .
+"""),
     SpriteKind.player)
+mySprite.set_position(randint(10, 80), 50)
 controller.move_sprite(mySprite)
 mySprite.set_flag(SpriteFlag.STAY_IN_SCREEN, True)
 info.set_life(5)
@@ -139,4 +140,5 @@ def on_update_interval():
     EnemyShip.x = scene.screen_width()
     EnemyShip.vx = -20
     EnemyShip.y = randint(10, scene.screen_height() - 10)
-game.on_update_interval(2000, on_update_interval)
+    EnemyShip.follow(mySprite, 4)
+game.on_update_interval(5000, on_update_interval)
